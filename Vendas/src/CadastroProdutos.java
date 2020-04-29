@@ -1,0 +1,2 @@
+public class CadastroProdutos {
+}
