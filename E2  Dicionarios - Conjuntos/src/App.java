@@ -1,5 +1,14 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
+
 public class App {
-//l
+
     public static void main(String[]  args) {
 
         String[] files = new String[]{ "texto01.txt","texto02.txt", "texto03.txt",
@@ -8,22 +17,24 @@ public class App {
 
         TextAnalysis dicionario = new TextAnalysis(files);
 
-        // 1. Dada uma palavra qualquer, em quais arquivos esta palavra aparece?
-        System.out.println("1. Dada uma palavra qualquer, em quais arquivos esta palavra aparece?");
-        System.out.println(dicionario.search("beatles")+"\n");
+        // listarArquivos(String) ficou obsoleto após implementar
+        //                        método abaixo
+        dicionario.listarArquivos("Arquimedes");
+        dicionario.listarArquivos("Beatles");
+        dicionario.listarArquivos("física");
+        dicionario.listarArquivos("nome");
 
-        // 2. Dadas duas palavras quaisquer, quais são os arquivos que contém as duas palavras? E três palavras?
-        System.out.println("2. Dadas duas palavras quaisquer, quais são os arquivos que contém as duas palavras?");
-        System.out.println(dicionario.search("arquimedes","corpo")+"\n");
-        System.out.println("E três palavras?");
-        System.out.println(dicionario.search("siracusa","arquimedes","ferissem")+"\n");
+        dicionario.listarArquivos(new String[]{"matemática"});
+        dicionario.listarArquivos(new String[]{"Arquimedes"});
 
-        // 3. Dado um arquivo qualquer mostrar quais as palavras que aparecem neste arquivo com suas frequências.
-        System.out.println("3. Dado um arquivo qualquer mostrar quais as palavras que aparecem neste arquivo com suas frequências.");
-        System.out.println(dicionario.frequenciaPalavras("texto09.txt")+"\n");
+        dicionario.listarArquivos(new String[]{"Arquimedes", "matemática"});
+        dicionario.listarArquivos(new String[]{"Arquimedes", "física", "nome"});
 
-        // 4. Dados dois arquivos, quais as palavras que aparecem em ambos os arquivos?
-        System.out.println("4. Dados dois arquivos, quais as palavras que aparecem em ambos os arquivos?");
-        System.out.println(dicionario.searchArquivos("texto01.txt","texto09.txt"));
+        dicionario.listarPalavras("texto04.txt");
+
+        dicionario.listarPalavrasComuns("texto01.txt", "texto04.txt");
+        dicionario.listarPalavrasComuns("texto04.txt", "texto05.txt");
     }
+
+
 }
